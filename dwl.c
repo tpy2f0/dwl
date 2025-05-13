@@ -1407,6 +1407,9 @@ focusclient(Client *c, int lift)
 	if (locked)
 		return;
 
+	if(c && client_should_ignore_focus(c))
+		return;
+
 	/* Raise client in stacking order if requested */
 	if (c && lift)
 		wlr_scene_node_raise_to_top(&c->scene->node);
